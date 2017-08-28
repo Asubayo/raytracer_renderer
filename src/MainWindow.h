@@ -1,5 +1,6 @@
 #pragma once
 #include "wx/wxprec.h"
+#include "CGLCanvas.h"
 #include "CLogWindow.h"
 
 class MainWindow : public wxFrame
@@ -8,10 +9,10 @@ private:
 	enum 
 	{ 
 		ID_QUIT = wxID_HIGHEST + 1,
-		ID_DISPLAY_LOG
+		ID_DISPLAY_SETTINGS,
+		ID_DISPLAY_LOG,
+		ID_GL_CANVAS
 	};
-
-	CLogWindow *mLogWindow;
 
 	// Menu bar
 	wxMenuBar *menubar;
@@ -21,11 +22,15 @@ private:
 
 	void createMenuBar();
 	void OnDisplayLogWindowCheckbox(wxCommandEvent& event);
+	void OnDisplaySettingsWindowCheckbox(wxCommandEvent& event);
 
 	// Current (main) window events
 	void OnQuit(wxCommandEvent& event);
 	void onClose(wxCloseEvent& evt);
 	void OnResize(wxSizeEvent& event);
+
+	CGLCanvas *glcanvas;
+	CLogWindow *mLogWindow;
 
 public:
 	wxPanel* mMainPanel;
